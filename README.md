@@ -1,13 +1,13 @@
-# Search Conference Name by Paper
-Put paper name in the text file. It will search the corresponding conference/journal name.
-It crawls www.semanticscholar.org using API (See https://stackoverflow.com/questions/59201104/cannot-scrape-certain-div-tags-using-python-selenium). It also checks if paper name matches to the search result.
+# Search Conference Name of Paper
+Put paper names in the text file. It will search the corresponding conference/journal name.
+It crawls www.semanticscholar.org using API (See https://stackoverflow.com/questions/59201104/cannot-scrape-certain-div-tags-using-python-selenium). It also checks if the paper name matches the search result.
 
 # Result from "python main.py"
 ```
-[Search Title in List]:
+[Search Title In List]:
 ['The Marginal Value of Adaptive Gradient Methods in Machine Learning', 'Improving Generalization Performance by Switching from Adam to SGD', 'Deep Mutual Learning', 'Born Again Neural Networks', 'Data Distillation Towards Omni Supervised Learning', 'Weight Standardization', 'Knowledge Transfer with Jacobian Matching', 'Paraphrasing Complex Network Network Compression via Factor Transfer', 'Self supervised Knowledge Distillation Using Singular Value Decomposition', 'SmoothGrad removing noise by adding noise', 'From Big to Small Multi Scale Local Planar Guidance for Monocular Depth Estimation', 'THE LOTTERY TICKET HYPOTHESIS FINDING SPARSE, TRAINABLE NEURAL NETWORKS']
 
-[Search Title out List]:
+[Search Title Out List]:
 ['The Marginal Value of Adaptive Gradient Methods in Machine Learning', 'Improving Generalization Performance by Switching from Adam to SGD', 'Deep Mutual Learning', 'Born Again Neural Networks', 'Data Distillation Towards Omni Supervised Learning', 'Weight Standardization', 'Knowledge Transfer with Jacobian Matching', 'Paraphrasing Complex Network Network Compression via Factor Transfer', 'Self supervised Knowledge Distillation Using Singular Value Decomposition', 'SmoothGrad removing noise by adding noise', 'From Big to Small Multi Scale Local Planar Guidance for Monocular Depth Estimation', 'The Lottery Ticket Hypothesis Finding Sparse, Trainable Neural Networks']
 
 [Result]:
@@ -24,3 +24,6 @@ arXiv
 arXiv
 ICLR
 ```
+
+# Contact
+This is the first time to use GitHub for me. Feel free to raise issues. Thank you.

@@ -126,10 +126,10 @@ for search_title_in in search_title_in_list:
     search_title_out_list.append(search_title_out)
     venue_result_list.append(venue_result)
 
-print("[Search Title in List]:")
+print("[Search Title In List]:")
 print(search_title_in_list)
 print("")
-print("[Search Title out List]:")
+print("[Search Title Out List]:")
 print(search_title_out_list)
 print("")
 print("[Result]:")
