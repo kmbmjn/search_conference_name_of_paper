@@ -33,17 +33,15 @@ def search_by_title(search_title_in_list):
 
 # define search title
 search_title_in_list = [
-"Defensive distillation is not robust to adversarial examples",
-"A Dual Approach to Scalable Verification of Deep Networks.",
-"Efficient neural network robustness certification with general activation functions",
-"Evaluating the robustness of neural networks: An extreme value theory approach",
-"On the effectiveness of interval bound propagation for training verifiably robust models",
-"Adversarial vulnerability for any classifier",
-"Fast is better than free: Revisiting adversarial training",
-"Using pre-training can improve model robustness and uncertainty",
-"Adversarial examples from computational constraints",
-"You only propagate once: Accelerating adversarial training via maximal principle",
-"A unified view of piecewise linear neural network verification",
+"Domain-adversarial training of neural networks",
+"Unsupervised domain adaptation by backpropagation",
+"Learning transferable features with deep adaptation networks",
+"Adversarial discriminative domain adaptation",
+"Stargan: Unified generative adversarial networks for multi-domain image-to-image translation",
+"Learning to discover cross-domain relations with generative adversarial networks",
+"Adversarial feature learning",
+"Coupled generative adversarial networks",
+"Cycada: Cycle-consistent adversarial domain adaptation",
 ]
 
 # replace xa0 in search title
@@ -79,12 +77,13 @@ for search_title_in in search_title_in_list:
         venue_result = "CVPR"
     elif "International Conference on Computer Vision" in venue_result:
         venue_result = "ICCV"
-
+    elif venue_result.lower() == "arxiv":
+        venue_result = "arXiv"
     # ICLR 2016 to ICLR
-    if re.search(r'\d+$', venue_result) is not None:
+    elif re.search(r'\d+$', venue_result) is not None:
         venue_result = venue_result[:-5]
     # 2017 IEEE Symposium on Security and Privacy (SP)
-    if re.search(r'^\d', venue_result) is not None:
+    elif re.search(r'^\d', venue_result) is not None:
         venue_result = venue_result[5:]
 
     search_title_out_list.append(search_title_out)
@@ -99,8 +98,3 @@ print("")
 print("[Result]:")
 for venue in venue_result_list:
     print(venue)
-
-
-# To Do
-# NIPS 2018
-# ICLR 2016
