@@ -53,6 +53,8 @@ search_title_in_list = [search_title_in.replace(".", "") for search_title_in in 
 search_title_in_list = [search_title_in.replace("!", "") for search_title_in in search_title_in_list]
 # replace ’ in search title
 search_title_in_list = [search_title_in.replace("’", "'") for search_title_in in search_title_in_list]
+# replace : in search title
+search_title_in_list = [search_title_in.replace(":", "") for search_title_in in search_title_in_list]
 
 print(search_title_in_list)
 print("")
@@ -71,19 +73,25 @@ for search_title_in in search_title_in_list:
     search_title_out = search_title_out.replace("!", "")
     # replace ’
     search_title_out = search_title_out.replace("’", "'")
+    # replace :
+    search_title_out = search_title_out.replace(":", "")
 
     if search_title_in.lower().replace(" ", "") != search_title_out.lower().replace(" ", ""):
         print("Match Error.")
         print(search_title_in.lower().replace(" ", ""))
         print(search_title_out.lower().replace(" ", ""))
+        print("")
 
-    # venue edit
+    # workshop alert
     if "workshop" in venue_result:
         print(venue_result)
     if "Workshop" in venue_result:
         print(venue_result)
 
+    # venue edit
     if "Computer Vision and Pattern Recognition Workshop" in venue_result:
+        venue_result = "CVPRW"
+    elif "CVPR Workshop" in venue_result:
         venue_result = "CVPRW"
     elif "Computer Vision and Pattern Recognition" in venue_result:
         venue_result = "CVPR"
@@ -93,6 +101,8 @@ for search_title_in in search_title_in_list:
         venue_result = "ICCV"
     elif venue_result.lower() == "arxiv":
         venue_result = "arXiv"
+    elif "Winter Conference on Applications of Computer Vision" in venue_result:
+        venue_result = "WACV"
     # ICLR 2016 to ICLR
     elif re.search(r"\d+$", venue_result) is not None:
         venue_result = venue_result[:-5]
