@@ -1,6 +1,7 @@
 import requests
 import re
 
+
 def search_by_title(search_title_in_list):
     ## search_title_in_list = "Representation learning with contrastive predictive coding"
 
@@ -15,10 +16,9 @@ def search_by_title(search_title_in_list):
         "yearFilter": None,
         "requireViewablePdf": False,
         "publicationTypes": [],
-        "externalContentTypes": []
+        "externalContentTypes": [],
     }
-    r = requests.post(
-        'https://www.semanticscholar.org/api/1/search', json=data).json()
+    r = requests.post("https://www.semanticscholar.org/api/1/search", json=data).json()
 
     # import pprint
     # pp = pprint.PrettyPrinter(indent=4)
@@ -31,9 +31,10 @@ def search_by_title(search_title_in_list):
 
     return search_title_out, venue_result
 
+
 # read search title
 search_title_in_list = []
-f = open('search_title_in_list.txt', 'r')
+f = open("search_title_in_list.txt", "r")
 line = f.readline()
 search_title_in_list.append(line)
 while line:
@@ -43,15 +44,15 @@ f.close()
 search_title_in_list.pop()
 
 # replace \n in search title
-search_title_in_list = [search_title_in.replace(u'\n', u'') for search_title_in in search_title_in_list]
+search_title_in_list = [search_title_in.replace(u"\n", u"") for search_title_in in search_title_in_list]
 # replace xa0 in search title
-search_title_in_list = [search_title_in.replace(u'\xa0', u' ') for search_title_in in search_title_in_list]
+search_title_in_list = [search_title_in.replace(u"\xa0", u" ") for search_title_in in search_title_in_list]
 # replace . in search title
-search_title_in_list = [search_title_in.replace('.', '') for search_title_in in search_title_in_list]
+search_title_in_list = [search_title_in.replace(".", "") for search_title_in in search_title_in_list]
 # replace ! in search title
-search_title_in_list = [search_title_in.replace('!', '') for search_title_in in search_title_in_list]
+search_title_in_list = [search_title_in.replace("!", "") for search_title_in in search_title_in_list]
 # replace ’ in search title
-search_title_in_list = [search_title_in.replace('’', "'") for search_title_in in search_title_in_list]
+search_title_in_list = [search_title_in.replace("’", "'") for search_title_in in search_title_in_list]
 
 print(search_title_in_list)
 print("")
@@ -65,15 +66,15 @@ for search_title_in in search_title_in_list:
 
     # test correspondence
     # replace .
-    search_title_out = search_title_out.replace('.', '')
+    search_title_out = search_title_out.replace(".", "")
     # replace !
-    search_title_out = search_title_out.replace('!', '')
+    search_title_out = search_title_out.replace("!", "")
     # replace ’
     search_title_out = search_title_out.replace("’", "'")
 
-    if search_title_in.lower().replace(" ","") != search_title_out.lower().replace(" ",""):
-        print(search_title_in.lower().replace(" ",""))
-        print(search_title_out.lower().replace(" ",""))
+    if search_title_in.lower().replace(" ", "") != search_title_out.lower().replace(" ", ""):
+        print(search_title_in.lower().replace(" ", ""))
+        print(search_title_out.lower().replace(" ", ""))
 
     # venue edit
     if "workshop" in venue_result:
@@ -92,10 +93,10 @@ for search_title_in in search_title_in_list:
     elif venue_result.lower() == "arxiv":
         venue_result = "arXiv"
     # ICLR 2016 to ICLR
-    elif re.search(r'\d+$', venue_result) is not None:
+    elif re.search(r"\d+$", venue_result) is not None:
         venue_result = venue_result[:-5]
     # 2017 IEEE Symposium on Security and Privacy (SP)
-    elif re.search(r'^\d', venue_result) is not None:
+    elif re.search(r"^\d", venue_result) is not None:
         venue_result = venue_result[5:]
 
     search_title_out_list.append(search_title_out)
