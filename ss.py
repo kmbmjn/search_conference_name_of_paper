@@ -1,10 +1,11 @@
 import requests
+import re
 
-def search_by_title(search_title):
-    ## search_title = "Representation learning with contrastive predictive coding"
+def search_by_title(search_title_in_list):
+    ## search_title_in_list = "Representation learning with contrastive predictive coding"
 
     data = {
-        "queryString": search_title,
+        "queryString": search_title_in_list,
         "page": 1,
         "pageSize": 1,
         "sort": "relevance",
@@ -25,52 +26,53 @@ def search_by_title(search_title):
     # print(r.keys())
     # print(r["results"][0])
 
-    title_result = r["results"][0]["title"]["text"]
+    search_title_out = r["results"][0]["title"]["text"]
     venue_result = r["results"][0]["venue"]["text"]
 
-    return title_result, venue_result
+    return search_title_out, venue_result
 
 # define search title
-search_title_list = [
-"Provable defenses against adversarial examples via the convex outer adversarial polytope",
-"On detecting adversarial perturbations",
-"A closer look at memorization in deep networks",
-"Certified defenses against adversarial examples",
-"Decision-based adversarial attacks: Reliable attacks against black-box machine learning models",
-"Adversarial examples are not bugs, they are features",
-"Theoretically principled trade-off between robustness and accuracy",
-"Detecting adversarial samples from artifacts",
-"Mitigating adversarial effects through randomization",
-"Adversarial training methods for semi-supervised text classification",
-"Pixeldefend: Leveraging generative models to understand and defend against adversarial examples",
-"Distributional smoothing with virtual adversarial training",
-"Adversarial attacks on neural network policies",
-"Adversarially robust generalization requires more data",
-"Feature denoising for improving adversarial robustness",
+search_title_in_list = [
+"Defensive distillation is not robust to adversarial examples",
+"A Dual Approach to Scalable Verification of Deep Networks.",
+"Efficient neural network robustness certification with general activation functions",
+"Evaluating the robustness of neural networks: An extreme value theory approach",
+"On the effectiveness of interval bound propagation for training verifiably robust models",
+"Adversarial vulnerability for any classifier",
+"Fast is better than free: Revisiting adversarial training",
+"Using pre-training can improve model robustness and uncertainty",
+"Adversarial examples from computational constraints",
+"You only propagate once: Accelerating adversarial training via maximal principle",
+"A unified view of piecewise linear neural network verification",
 ]
 
 # replace xa0 in search title
-search_title_list = [search_title.replace(u'\xa0', u' ') for search_title in search_title_list]
+search_title_in_list = [search_title_in.replace(u'\xa0', u' ') for search_title_in in search_title_in_list]
 # replace . in search title
-search_title_list = [search_title.replace('.', '') for search_title in search_title_list]
+search_title_in_list = [search_title_in.replace('.', '') for search_title_in in search_title_in_list]
 # replace ! in search title
-search_title_list = [search_title.replace('!', '') for search_title in search_title_list]
+search_title_in_list = [search_title_in.replace('!', '') for search_title_in in search_title_in_list]
+# replace ’ in search title
+search_title_in_list = [search_title_in.replace('’', "'") for search_title_in in search_title_in_list]
 
 # start search
-title_result_list = []
+search_title_out_list = []
 venue_result_list = []
-for search_title in search_title_list:
+for search_title_in in search_title_in_list:
     # get search
-    title_result, venue_result = search_by_title(search_title)
+    search_title_out, venue_result = search_by_title(search_title_in)
 
     # test correspondence
     # replace .
-    title_result = title_result.replace('.', '')
+    search_title_out = search_title_out.replace('.', '')
     # replace !
-    title_result = title_result.replace('!', '')
-    if search_title.lower().replace(" ","") != title_result.lower().replace(" ",""):
-        print(search_title.lower().replace(" ",""))
-        print(title_result.lower().replace(" ",""))
+    search_title_out = search_title_out.replace('!', '')
+    # replace ’
+    search_title_out = search_title_out.replace("’", "'")
+
+    if search_title_in.lower().replace(" ","") != search_title_out.lower().replace(" ",""):
+        print(search_title_in.lower().replace(" ",""))
+        print(search_title_out.lower().replace(" ",""))
 
     # venue edit
     if "Computer Vision and Pattern Recognition" in venue_result:
@@ -78,12 +80,23 @@ for search_title in search_title_list:
     elif "International Conference on Computer Vision" in venue_result:
         venue_result = "ICCV"
 
-    title_result_list.append(title_result)
+    # ICLR 2016 to ICLR
+    if re.search(r'\d+$', venue_result) is not None:
+        venue_result = venue_result[:-5]
+    # 2017 IEEE Symposium on Security and Privacy (SP)
+    if re.search(r'^\d', venue_result) is not None:
+        venue_result = venue_result[5:]
+
+    search_title_out_list.append(search_title_out)
     venue_result_list.append(venue_result)
 
-print(search_title_list)
-print(title_result_list)
+print("[Search Title in List]:")
+print(search_title_in_list)
 print("")
+print("[Search Title out List]:")
+print(search_title_out_list)
+print("")
+print("[Result]:")
 for venue in venue_result_list:
     print(venue)
 
