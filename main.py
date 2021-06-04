@@ -31,11 +31,19 @@ def search_by_title(search_title_in_list):
 
     return search_title_out, venue_result
 
-# define search title
-search_title_in_list = [
-"CullNet: Calibrated and Pose Aware Confidence Scores for Object Pose Estimation, PDF"
-]
+# read search title
+search_title_in_list = []
+f = open('search_title_in_list.txt', 'r')
+line = f.readline()
+search_title_in_list.append(line)
+while line:
+    line = f.readline()
+    search_title_in_list.append(line)
+f.close()
+search_title_in_list.pop()
 
+# replace \n in search title
+search_title_in_list = [search_title_in.replace(u'\n', u'') for search_title_in in search_title_in_list]
 # replace xa0 in search title
 search_title_in_list = [search_title_in.replace(u'\xa0', u' ') for search_title_in in search_title_in_list]
 # replace . in search title
@@ -44,6 +52,9 @@ search_title_in_list = [search_title_in.replace('.', '') for search_title_in in 
 search_title_in_list = [search_title_in.replace('!', '') for search_title_in in search_title_in_list]
 # replace ’ in search title
 search_title_in_list = [search_title_in.replace('’', "'") for search_title_in in search_title_in_list]
+
+print(search_title_in_list)
+print("")
 
 # start search
 search_title_out_list = []
@@ -65,6 +76,11 @@ for search_title_in in search_title_in_list:
         print(search_title_out.lower().replace(" ",""))
 
     # venue edit
+    if "workshop" in venue_result:
+        print(venue_result)
+    if "Workshop" in venue_result:
+        print(venue_result)
+
     if "Computer Vision and Pattern Recognition Workshop" in venue_result:
         venue_result = "CVPRW"
     elif "Computer Vision and Pattern Recognition" in venue_result:

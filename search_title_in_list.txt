@@ -1,0 +1,3 @@
+Variational dropout and the local reparameterization trick
+Bayesian convolutional neural networks with Bernoulli approximate variational inference
+Deep kernel learning
