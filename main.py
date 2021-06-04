@@ -47,16 +47,17 @@ search_title_in_list.pop()
 search_title_in_list = [search_title_in.replace(u"\n", u"") for search_title_in in search_title_in_list]
 # replace xa0 in search title
 search_title_in_list = [search_title_in.replace(u"\xa0", u" ") for search_title_in in search_title_in_list]
+
 # replace . in search title
 search_title_in_list = [search_title_in.replace(".", "") for search_title_in in search_title_in_list]
 # replace ! in search title
 search_title_in_list = [search_title_in.replace("!", "") for search_title_in in search_title_in_list]
 # replace ? in search title
 search_title_in_list = [search_title_in.replace("?", "") for search_title_in in search_title_in_list]
-# replace ’ in search title
-search_title_in_list = [search_title_in.replace("’", "'") for search_title_in in search_title_in_list]
 # replace : in search title
 search_title_in_list = [search_title_in.replace(":", "") for search_title_in in search_title_in_list]
+# replace ’ in search title
+search_title_in_list = [search_title_in.replace("’", "'") for search_title_in in search_title_in_list]
 # replace - in search title
 search_title_in_list = [search_title_in.replace("-", " ") for search_title_in in search_title_in_list]
 
@@ -77,10 +78,10 @@ for search_title_in in search_title_in_list:
     search_title_out = search_title_out.replace("!", "")
     # replace ?
     search_title_out = search_title_out.replace("?", "")
-    # replace ’
-    search_title_out = search_title_out.replace("’", "'")
     # replace :
     search_title_out = search_title_out.replace(":", "")
+    # replace ’
+    search_title_out = search_title_out.replace("’", "'")
     # replace -
     search_title_out = search_title_out.replace("-", " ")
 
@@ -100,7 +101,7 @@ for search_title_in in search_title_in_list:
         print(venue_result)
         print("")
 
-    # venue edit
+    # edit venue
     if "Computer Vision and Pattern Recognition Workshop" in venue_result:
         venue_result = "CVPRW"
     elif "CVPR Workshop" in venue_result:
