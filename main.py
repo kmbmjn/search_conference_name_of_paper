@@ -51,10 +51,14 @@ search_title_in_list = [search_title_in.replace(u"\xa0", u" ") for search_title_
 search_title_in_list = [search_title_in.replace(".", "") for search_title_in in search_title_in_list]
 # replace ! in search title
 search_title_in_list = [search_title_in.replace("!", "") for search_title_in in search_title_in_list]
+# replace ? in search title
+search_title_in_list = [search_title_in.replace("?", "") for search_title_in in search_title_in_list]
 # replace ’ in search title
 search_title_in_list = [search_title_in.replace("’", "'") for search_title_in in search_title_in_list]
 # replace : in search title
 search_title_in_list = [search_title_in.replace(":", "") for search_title_in in search_title_in_list]
+# replace - in search title
+search_title_in_list = [search_title_in.replace("-", " ") for search_title_in in search_title_in_list]
 
 print(search_title_in_list)
 print("")
@@ -71,10 +75,14 @@ for search_title_in in search_title_in_list:
     search_title_out = search_title_out.replace(".", "")
     # replace !
     search_title_out = search_title_out.replace("!", "")
+    # replace ?
+    search_title_out = search_title_out.replace("?", "")
     # replace ’
     search_title_out = search_title_out.replace("’", "'")
     # replace :
     search_title_out = search_title_out.replace(":", "")
+    # replace -
+    search_title_out = search_title_out.replace("-", " ")
 
     if search_title_in.lower().replace(" ", "") != search_title_out.lower().replace(" ", ""):
         print("Match Error.")
@@ -84,9 +92,13 @@ for search_title_in in search_title_in_list:
 
     # workshop alert
     if "workshop" in venue_result:
+        print("workshop alert.")
         print(venue_result)
+        print("")
     if "Workshop" in venue_result:
+        print("workshop alert.")
         print(venue_result)
+        print("")
 
     # venue edit
     if "Computer Vision and Pattern Recognition Workshop" in venue_result:
