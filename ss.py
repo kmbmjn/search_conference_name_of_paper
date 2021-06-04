@@ -1,7 +1,7 @@
 import requests
 
 def search_by_title(search_title):
-## search_title = "Representation learning with contrastive predictive coding"
+    ## search_title = "Representation learning with contrastive predictive coding"
 
     data = {
         "queryString": search_title,
@@ -30,49 +30,64 @@ def search_by_title(search_title):
 
     return title_result, venue_result
 
+# define search title
 search_title_list = [
-"Dronet: Learning to fly by driving",
-"Attention, learn to solve routing problems!",
-"Tell me where to look: Guided attention inference network",
-"Deep k-nearest neighbors: Towards confident, interpretable and robust deep learning",
-"Adversarial audio synthesis",
-"Albumentations: fast and flexible image augmentations",
-"Singan: Learning a generative model from a single natural image",
-"Basnet: Boundary-aware salient object detection",
-"Manifold mixup: Better representations by interpolating hidden states",
+"Provable defenses against adversarial examples via the convex outer adversarial polytope",
+"On detecting adversarial perturbations",
+"A closer look at memorization in deep networks",
+"Certified defenses against adversarial examples",
+"Decision-based adversarial attacks: Reliable attacks against black-box machine learning models",
+"Adversarial examples are not bugs, they are features",
+"Theoretically principled trade-off between robustness and accuracy",
+"Detecting adversarial samples from artifacts",
+"Mitigating adversarial effects through randomization",
+"Adversarial training methods for semi-supervised text classification",
+"Pixeldefend: Leveraging generative models to understand and defend against adversarial examples",
+"Distributional smoothing with virtual adversarial training",
+"Adversarial attacks on neural network policies",
+"Adversarially robust generalization requires more data",
+"Feature denoising for improving adversarial robustness",
 ]
 
-# replace xa0
+# replace xa0 in search title
 search_title_list = [search_title.replace(u'\xa0', u' ') for search_title in search_title_list]
-# replace .
+# replace . in search title
 search_title_list = [search_title.replace('.', '') for search_title in search_title_list]
-# replace !
+# replace ! in search title
 search_title_list = [search_title.replace('!', '') for search_title in search_title_list]
 
+# start search
 title_result_list = []
 venue_result_list = []
 for search_title in search_title_list:
+    # get search
     title_result, venue_result = search_by_title(search_title)
 
+    # test correspondence
     # replace .
     title_result = title_result.replace('.', '')
     # replace !
     title_result = title_result.replace('!', '')
-    if search_title.lower() != title_result.lower():
-        print(search_title.lower())
-        print(title_result.lower())
+    if search_title.lower().replace(" ","") != title_result.lower().replace(" ",""):
+        print(search_title.lower().replace(" ",""))
+        print(title_result.lower().replace(" ",""))
+
+    # venue edit
+    if "Computer Vision and Pattern Recognition" in venue_result:
+        venue_result = "CVPR"
+    elif "International Conference on Computer Vision" in venue_result:
+        venue_result = "ICCV"
 
     title_result_list.append(title_result)
     venue_result_list.append(venue_result)
 
 print(search_title_list)
 print(title_result_list)
+print("")
 for venue in venue_result_list:
     print(venue)
 
 
 # To Do
-# 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition -> CVPR
-# 2019 IEEE/CVF International Conference on Computer Vision (ICCV) -> ICCV
-# 2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) -> CVPR
 # NIPS 2018
+# ICLR 2016
