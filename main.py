@@ -61,9 +61,6 @@ search_title_in_list = [search_title_in.replace("’", "'") for search_title_in 
 # replace - in search title
 search_title_in_list = [search_title_in.replace("-", " ") for search_title_in in search_title_in_list]
 
-print(search_title_in_list)
-print("")
-
 # start search
 search_title_out_list = []
 venue_result_list = []
