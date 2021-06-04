@@ -26,4 +26,4 @@ ICLR
 ```
 
 # Contact
-This is the first time to use GitHub for me. Feel free to raise issues. Thank you.
+For me, this is the first time to use GitHub. Feel free to raise issues. Thank you.
