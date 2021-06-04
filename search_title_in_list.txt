@@ -1,3 +1,10 @@
-Variational dropout and the local reparameterization trick
-Bayesian convolutional neural networks with Bernoulli approximate variational inference
-Deep kernel learning
+Dataset distillation
+Similarity-preserving knowledge distillation
+Knowledge adaptation for efficient semantic segmentation
+Knowledge distillation with adversarial samples supporting decision boundary
+Knowledge Distillation via Instance Relationship Graph
+Self-supervised knowledge distillation using singular value decomposition
+Correlation congruence for knowledge distillation
+Learning without memorizing
+Knowledge transfer via distillation of activation boundaries formed by hidden neurons
+Meal: Multi-model ensemble via adversarial learning

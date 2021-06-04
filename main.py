@@ -64,7 +64,7 @@ for search_title_in in search_title_in_list:
     # get search
     search_title_out, venue_result = search_by_title(search_title_in)
 
-    # test correspondence
+    # test matching
     # replace .
     search_title_out = search_title_out.replace(".", "")
     # replace !
@@ -73,6 +73,7 @@ for search_title_in in search_title_in_list:
     search_title_out = search_title_out.replace("’", "'")
 
     if search_title_in.lower().replace(" ", "") != search_title_out.lower().replace(" ", ""):
+        print("Match Error.")
         print(search_title_in.lower().replace(" ", ""))
         print(search_title_out.lower().replace(" ", ""))
 
@@ -98,6 +99,8 @@ for search_title_in in search_title_in_list:
     # 2017 IEEE Symposium on Security and Privacy (SP)
     elif re.search(r"^\d", venue_result) is not None:
         venue_result = venue_result[5:]
+    elif venue_result == "":
+        venue_result = "None"
 
     search_title_out_list.append(search_title_out)
     venue_result_list.append(venue_result)
