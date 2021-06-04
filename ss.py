@@ -33,15 +33,7 @@ def search_by_title(search_title_in_list):
 
 # define search title
 search_title_in_list = [
-"Domain-adversarial training of neural networks",
-"Unsupervised domain adaptation by backpropagation",
-"Learning transferable features with deep adaptation networks",
-"Adversarial discriminative domain adaptation",
-"Stargan: Unified generative adversarial networks for multi-domain image-to-image translation",
-"Learning to discover cross-domain relations with generative adversarial networks",
-"Adversarial feature learning",
-"Coupled generative adversarial networks",
-"Cycada: Cycle-consistent adversarial domain adaptation",
+"CullNet: Calibrated and Pose Aware Confidence Scores for Object Pose Estimation, PDF"
 ]
 
 # replace xa0 in search title
@@ -73,8 +65,12 @@ for search_title_in in search_title_in_list:
         print(search_title_out.lower().replace(" ",""))
 
     # venue edit
-    if "Computer Vision and Pattern Recognition" in venue_result:
+    if "Computer Vision and Pattern Recognition Workshop" in venue_result:
+        venue_result = "CVPRW"
+    elif "Computer Vision and Pattern Recognition" in venue_result:
         venue_result = "CVPR"
+    elif "International Conference on Computer Vision Workshop" in venue_result:
+        venue_result = "ICCVW"
     elif "International Conference on Computer Vision" in venue_result:
         venue_result = "ICCV"
     elif venue_result.lower() == "arxiv":
